@@ -81,8 +81,8 @@ void parallel_speedup_test() {
 
 
 int main(int argc, char* argv[]) {
-  //serial_overhead_test();
-  //parallel_overhead_test();
+  serial_overhead_test();
+  parallel_overhead_test();
   parallel_speedup_test();
 
   return 0;

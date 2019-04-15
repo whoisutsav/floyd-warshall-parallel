@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdio.h>
-#include "file_interface.h"
+#include "command_line_interface.h"
 #include "graph_processor.h"
 
 int** malloc_2d_matrix(int n) {
@@ -33,7 +33,7 @@ void test_fw_parallel_fully_connected() {
   }
 }
 
-void test_fw_parallel_serial_fully_connected() {
+void test_fw_parallel_serial_fully_connected_constant() {
   int n = 500;
   int ** m = malloc_2d_matrix(n);
   int ** s = malloc_2d_matrix(n); 
@@ -51,6 +51,28 @@ void test_fw_parallel_serial_fully_connected() {
     for(int j=0; j<n; j++) {
       if (i == j) { assert(m[i][j] == 0); assert(m[i][j] == s[i][j]); }
       else { assert(m[i][j] == 1); assert(m[i][j] == s[i][j]); }
+    }
+  }
+}
+
+void test_fw_parallel_serial_fully_connected() {
+  int n = 500;
+  int ** m = malloc_2d_matrix(n);
+  int ** s = malloc_2d_matrix(n); 
+  for (int i=0; i<n; i++) {
+    for(int j=0; j<n; j++) {
+      if (i == j) { m[i][j] = 0; s[i][j] = 0; }
+      else { m[i][j] = (i+j); s[i][j] = (i+j); }
+    }
+  }
+
+  fw_parallel(m, n, 10);
+  fw_serial(s, n);
+
+  for (int i=0; i<n; i++) {
+    for(int j=0; j<n; j++) {
+      if (i == j) { assert(m[i][j] == 0); assert(m[i][j] == s[i][j]); }
+      else { assert(m[i][j] == s[i][j]); }
     }
   }
 }
@@ -170,6 +192,7 @@ void test_end_to_end() {
 
 int main(int argc, char* argv[]) {
   test_fw_parallel_fully_connected();
+  test_fw_parallel_serial_fully_connected_constant(); 
   test_fw_parallel_serial_fully_connected(); 
   test_fw_parallel_star_singly_directed();
   test_fw_parallel_star_doubly_directed();

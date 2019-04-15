@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "file_interface.h"
+#include "command_line_interface.h"
 #include "graph_processor.h"
 
 int main(int argc, char* argv[]) {
