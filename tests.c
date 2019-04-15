@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdio.h>
-#include "command_line_interface.h"
+#include "file_rw.h"
 #include "graph_processor.h"
 
 int** malloc_2d_matrix(int n) {

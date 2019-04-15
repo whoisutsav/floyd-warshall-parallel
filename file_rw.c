@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "command_line_interface.h"
+#include "file_rw.h"
 
 int read_adj_matrix(int *** ptr, char* path) {
   int n;
