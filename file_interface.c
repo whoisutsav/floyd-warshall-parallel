@@ -12,7 +12,7 @@ int read_adj_matrix(int *** ptr, char* path) {
   };
 
   // Get matrix size
-  if (fscanf(fp, "%d", &n) != 1) {
+  if (fscanf(fp, " %d", &n) != 1) {
     printf("File read error\n");
     return -1;
   }
@@ -24,9 +24,13 @@ int read_adj_matrix(int *** ptr, char* path) {
   }
 
   // Populate array with values from file
+  //int r;
+  //int z;
   for(int i=0; i<n; i++) {
     for(int j=0; j<n; j++) {
-      if(fscanf(fp, "%d", &m[i][j]) != 1) {
+      //z = fscanf(fp, "%d", &r);
+      //if (z != -1) printf("%d\n", r);
+      if(fscanf(fp, " %d", &(m[i][j])) != 1) {
         printf("File read error\n");
         return -1;        
       }

@@ -1,10 +1,13 @@
 all: serial parallel
 
-serial: graph_processor.c graph_processor.h file_interface.c file_interface.h fw_serial.c
-	gcc -Wall -Werror -pthread -O3 graph_processor.c file_interface.c fw_serial.c -o fw_serial 
+tests: graph_processor.c graph_processor.h file_interface.c file_interface.h tests.c
+	gcc -Wall -Werror -pthread -O3 graph_processor.c file_interface.c tests.c -o tests 
 
-parallel: graph_processor.c graph_processor.h file_interface.c file_interface.h fw_parallel.c
-	gcc -Wall -Werror -pthread -O3 graph_processor.c file_interface.c fw_parallel.c -o fw_parallel 
+serial: graph_processor.c graph_processor.h file_interface.c file_interface.h main_serial.c
+	gcc -Wall -Werror -pthread -O3 graph_processor.c file_interface.c main_serial.c -o fw_serial 
+
+parallel: graph_processor.c graph_processor.h file_interface.c file_interface.h main_parallel.c
+	gcc -Wall -Werror -pthread -O3 graph_processor.c file_interface.c main_parallel.c -o fw_parallel 
 
 clean:
 	rm -f fw_serial fw_parallel
