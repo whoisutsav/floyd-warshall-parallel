@@ -1,4 +1,5 @@
 # Ignore binaries
 fw_serial
 fw_parallel
+fw_test
 fw_performance_test
