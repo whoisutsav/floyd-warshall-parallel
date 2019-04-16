@@ -124,11 +124,9 @@ void test_fw_parallel_star_doubly_directed() {
 void test_read_bad_file() {
   int *** m = malloc(sizeof(int **));
 
-  printf("Bad file error message test:\n");
   int r = read_adj_matrix(m, "test_files/empty.txt");
   assert(r == -1); 
 
-  printf("Bad file error message test:\n");
   int s = read_adj_matrix(m, "does_not_exist.txt");
   assert (s == -1);
 }

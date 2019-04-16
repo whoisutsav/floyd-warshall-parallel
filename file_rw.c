@@ -7,31 +7,20 @@ int read_adj_matrix(int *** ptr, char* path) {
   int **m;
   FILE * fp;
   if ((fp = fopen(path, "r")) == NULL) {
-    printf("File read error\n");
     return -1;    
   };
 
-  // Get matrix size
-  if (fscanf(fp, " %d", &n) != 1) {
-    printf("File read error\n");
+  if (fscanf(fp, " %d", &n) != 1) 
     return -1;
-  }
 
-  // Initialize 2-d array
   m = malloc(n * sizeof(int *)); 
   for(int a=0; a < n; a++) {
     m[a] = malloc(n * sizeof(int));
   }
 
-  // Populate array with values from file
-  //int r;
-  //int z;
   for(int i=0; i<n; i++) {
     for(int j=0; j<n; j++) {
-      //z = fscanf(fp, "%d", &r);
-      //if (z != -1) printf("%d\n", r);
       if(fscanf(fp, " %d", &(m[i][j])) != 1) {
-        printf("File read error\n");
         return -1;        
       }
     }
@@ -72,7 +61,6 @@ void debug_print_matrix(int **m, int n) {
 	}
 }
 
-// TODO remove
 int** debug_get_matrix() {
 	int **dist = malloc(4 * sizeof(int *));
 	for (int i=0; i<4; i++) {

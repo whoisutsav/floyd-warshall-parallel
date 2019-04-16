@@ -10,11 +10,13 @@ int main(int argc, char* argv[]) {
 
   if(argc < 2) {
     printf("Usage: fw_serial [INPUT_FILE]\n");
-    return -1;
+    return 1;
   }
 
-  if((n = read_adj_matrix(m, argv[1])) < 0)
-    return -1;
+  if((n = read_adj_matrix(m, argv[1])) < 0) {
+    printf("File read error\n");
+    return 1;
+  }
   
   fw_serial(*m, n);
   write_adj_matrix(*m, n, "output.txt");
